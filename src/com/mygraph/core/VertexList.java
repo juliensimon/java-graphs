@@ -46,7 +46,7 @@ public class VertexList<T extends Vertex> {
 			return false;
 		}
 		Integer i = edges.get(destination);
-		if (i != null) {
+		if ((i != null) && (i == weight)) {
 			return true;
 		}
 		else {

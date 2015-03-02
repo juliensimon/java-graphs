@@ -35,7 +35,7 @@ public class Graph<T extends Vertex> {
 	// It will add the source and destination vertexes if needed
 	// if the edge already exists, it won't be duplicated
 	public boolean addEdge(T source, T destination, int weight) {
-		if ((source == null) || (destination == null)) {
+		if ((source == null) || (destination == null) || (weight <= 0)) {
 			return false;
 		}
 		// Add vertexes if they're not already in the graph
@@ -46,12 +46,14 @@ public class Graph<T extends Vertex> {
 			vertices.put(destination, new VertexList<T>(destination.getId()));
 		}
 		// Add edge
-		vertices.get(source).addEdge(destination, weight);
+		boolean src;
+		boolean dst = true;
+		src = vertices.get(source).addEdge(destination, weight);
 		// If the graph is not directed, we need to add the reciprocal edge to the destination
 		if (!isDirected()) {
-			vertices.get(destination).addEdge(source, weight);
+			dst = vertices.get(destination).addEdge(source, weight);
 		}
-		return true;
+		return (src && dst);
 	}
 	
 	public boolean addEdge(T source, T destination) {
@@ -62,15 +64,17 @@ public class Graph<T extends Vertex> {
 		if ((source == null) || (destination == null)) {
 			return false;
 		}
-		vertices.get(source).removeEdge(destination);
+		boolean src;
+		boolean dst = true;
+		src = vertices.get(source).removeEdge(destination);
 		if (!isDirected()) {
-			vertices.get(destination).removeEdge(source);
+			dst = vertices.get(destination).removeEdge(source);
 		}
-		return true;
+		return (src && dst);
 	}
 	
 	public boolean hasEdge(T source, T destination, int weight) {
-		if ((source == null) || (destination == null)) {
+		if ((source == null) || (destination == null) || (weight <= 0)) {
 			return false;
 		}
 		return vertices.get(source).hasEdgeTo(destination, weight);
