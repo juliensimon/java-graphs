@@ -32,11 +32,15 @@ public class Graph<T extends Vertex> {
 		return count;
 	}
 	
-	public Set<T> getNeighbors(Vertex v) {
+	public Set<T> getNeighbors(T v) {
 		if (v == null) {
 			return null;
 		}
 		return vertices.get(v).getNeighbors();
+	}
+	
+	public Set<T> getVertices() {
+		return vertices.keySet();
 	}
 	
 	// This method adds an edge to the graph
@@ -93,6 +97,13 @@ public class Graph<T extends Vertex> {
 			return false;
 		}
 		return vertices.get(source).hasEdgeTo(destination);
+	}
+	
+	public int isWeight(T source, T destination) {
+		if ((source == null) || (destination == null)) {
+			return 0;
+		}
+		return vertices.get(source).isWeight(destination);
 	}
 	
 	public void display() {

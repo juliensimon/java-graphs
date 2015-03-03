@@ -337,4 +337,9 @@ public class TestGraph {
 		
 		g = null;
 	}
+	
+	@Test
+	public void testIsWeight() {
+		fail("Not implemented");
+	}
 }
