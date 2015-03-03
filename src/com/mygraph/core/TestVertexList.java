@@ -2,6 +2,8 @@ package com.mygraph.core;
 
 import static org.junit.Assert.*;
 
+import java.util.Set;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -114,6 +116,17 @@ public class TestVertexList {
 		assertEquals(vlist.isWeight(v3), 2);
 		assertEquals(vlist.isWeight(v4), 0);
 		vlist = null;
-
+	}
+	
+	@Test
+	public void testGetNeighbors() {
+		vlist = new VertexList<Vertex>(v1.getId());
+		vlist.addEdge(v2, 1);
+		vlist.addEdge(v3, 2);
+		Set<Vertex> neighbors = vlist.getNeighbors();
+		assertTrue(neighbors.contains(v2));
+		assertTrue(neighbors.contains(v3));
+		assertFalse(neighbors.contains(v4));
+		vlist = null;
 	}
 }

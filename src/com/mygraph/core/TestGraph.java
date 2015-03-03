@@ -2,6 +2,8 @@ package com.mygraph.core;
 
 import static org.junit.Assert.*;
 
+import java.util.Set;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -261,6 +263,77 @@ public class TestGraph {
 		g.removeEdge(v3, v1);
 		assertFalse(g.hasEdge(v3, v1));
 		assertTrue(g.hasEdge(v1, v3));
+		
+		g = null;
+	}
+	
+	@Test
+	public void testGetNeighborsUndirected() {
+		g = new Graph<Vertex>(false);
+				
+		g.addEdge(v1, v2);
+		g.addEdge(v1, v3, 2);
+		g.addEdge(v2, v4);
+		g.addEdge(v3, v4);
+
+		Vertex v5 = new Vertex(5);
+
+		Set<Vertex> neighbors = g.getNeighbors(v1);
+		assertTrue(neighbors.contains(v2));
+		assertTrue(neighbors.contains(v3));
+		assertFalse(neighbors.contains(v4));
+		assertFalse(neighbors.contains(v5));
+		
+		neighbors = g.getNeighbors(v2);
+		assertTrue(neighbors.contains(v1));
+		assertTrue(neighbors.contains(v4));
+		assertFalse(neighbors.contains(v3));
+		assertFalse(neighbors.contains(v5));
+
+		neighbors = g.getNeighbors(v3);
+		assertTrue(neighbors.contains(v1));
+		assertTrue(neighbors.contains(v4));
+		assertFalse(neighbors.contains(v2));
+		assertFalse(neighbors.contains(v5));
+		
+		neighbors = g.getNeighbors(v4);
+		assertTrue(neighbors.contains(v2));
+		assertTrue(neighbors.contains(v3));
+		assertFalse(neighbors.contains(v1));
+		assertFalse(neighbors.contains(v5));
+		
+		g = null;
+	}
+	
+	@Test
+	public void testGetNeighborsDirected() {
+		g = new Graph<Vertex>(true);
+				
+		g.addEdge(v1, v2);
+		g.addEdge(v1, v3, 2);
+		g.addEdge(v3, v1);
+		g.addEdge(v2, v4);
+		g.addEdge(v4, v2);
+
+		Set<Vertex> neighbors = g.getNeighbors(v1);
+		assertTrue(neighbors.contains(v2));
+		assertTrue(neighbors.contains(v3));
+		assertFalse(neighbors.contains(v4));
+		
+		neighbors = g.getNeighbors(v2);
+		assertFalse(neighbors.contains(v1));
+		assertFalse(neighbors.contains(v3));
+		assertTrue(neighbors.contains(v4));
+
+		neighbors = g.getNeighbors(v3);
+		assertTrue(neighbors.contains(v1));
+		assertFalse(neighbors.contains(v2));
+		assertFalse(neighbors.contains(v4));
+		
+		neighbors = g.getNeighbors(v4);
+		assertFalse(neighbors.contains(v1));
+		assertTrue(neighbors.contains(v2));
+		assertFalse(neighbors.contains(v3));
 		
 		g = null;
 	}

@@ -1,6 +1,7 @@
 package com.mygraph.core;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class VertexList<T extends Vertex> {
 	
@@ -10,6 +11,10 @@ public class VertexList<T extends Vertex> {
 	VertexList(int sourceId) {
 		this.sourceId = sourceId;
 		this.edges = new HashMap<T, Integer>();
+	}
+	
+	Set<T> getNeighbors() {
+		return edges.keySet();
 	}
 	
 	int countEdges() {

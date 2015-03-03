@@ -15,4 +15,9 @@ public class Vertex {
 	public String toString() {
 		return ""+id;
 	}
+	
+	public boolean equals(Object o) {
+		Vertex v = (Vertex)o;
+		return (id == v.getId());
+	}
 }

@@ -1,6 +1,7 @@
 package com.mygraph.core;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class Graph<T extends Vertex> {
 
@@ -30,7 +31,14 @@ public class Graph<T extends Vertex> {
 		}
 		return count;
 	}
-			
+	
+	public Set<T> getNeighbors(Vertex v) {
+		if (v == null) {
+			return null;
+		}
+		return vertices.get(v).getNeighbors();
+	}
+	
 	// This method adds an edge to the graph
 	// It will add the source and destination vertexes if needed
 	// if the edge already exists, it won't be duplicated
