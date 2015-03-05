@@ -30,31 +30,19 @@ public class DepthFirstSearch<T extends Vertex> {
 		color 			= new int[size+1];		
 	}
 	
-	private int getColor(T v) {
-		return color[v.getId()];
-	}
-	
-	private void setColor(T v, int c) {
-		color[v.getId()] = c;
-	}
-	
-	private void setPredecessor(T v, T w) {
-		predecessor[v.getId()] = w.getId();
-	}
-	
 	private void dfs_visit(T v) {
 		int id = v.getId();
-		setColor(v, GRAY);
+		color[v.getId()] = GRAY;
 		counter++;
 		discovered[id] = counter;
 		
 		for (T w : g.getNeighbors(v)) {
-			if (getColor(w) == WHITE) {
-				setPredecessor(w, v);
+			if (color[w.getId()] == WHITE) {
+				predecessor[w.getId()] = v.getId();
 				dfs_visit(w);
 			}
 		}
-		setColor(v, BLACK);
+		color[v.getId()] = BLACK;
 		
 		counter++;
 		finished[id] = counter;
@@ -70,7 +58,7 @@ public class DepthFirstSearch<T extends Vertex> {
 		
 		for (int i=1;i<this.size+1;i++) {
 			System.out.print("predecessor["+i+"]="+predecessor[i]);
-			System.out.print(" discovered["+i+"]="+discovered[i]);
+			System.out.println(" discovered["+i+"]="+discovered[i]);
 		}
 
 	}
@@ -81,12 +69,20 @@ public class DepthFirstSearch<T extends Vertex> {
 		Vertex v2 = new Vertex(2);
 		Vertex v3 = new Vertex(3);
 		Vertex v4 = new Vertex(4);
-	
+		Vertex v5 = new Vertex(5);
+		Vertex v6 = new Vertex(6);
+		Vertex v7 = new Vertex(7);
+
 		Graph<Vertex> g = new Graph<Vertex>(false);
-		g.addEdge(v1, v2);
-		g.addEdge(v1, v3, 2);
-		g.addEdge(v2, v4);
-		g.addEdge(v3, v4);
+		g.addEdge(v1, v2, 2);
+		g.addEdge(v1, v3, 1);
+		g.addEdge(v2, v3, 2);
+		g.addEdge(v2, v5, 1);
+		g.addEdge(v2, v6, 1);
+		g.addEdge(v3, v4, 1);
+		g.addEdge(v3, v5, 3);
+		g.addEdge(v4, v7, 3);
+		g.addEdge(v5, v7, 2);
 		
 		DepthFirstSearch<Vertex> dfs = new DepthFirstSearch<Vertex>(g);
 		dfs.search(v1);	
