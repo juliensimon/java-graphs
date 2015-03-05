@@ -82,13 +82,18 @@ public class BreadthFirstSearch<T extends Vertex> {
 		if (destination == null) {
 			return null;
 		}
-
 		int currentId = destination.getId();
+		// If the destination has no predecessor, there is no path to it
+		if (predecessor[currentId] == -1) {
+			return null;
+		}
+		// Walk through the predecessors and add them at the front of the list
 		ArrayList<Integer> path = new ArrayList<Integer>();
 		while (currentId != -1) {
 			path.add(0, currentId);
 			currentId = predecessor[currentId];
-		}	
+		}
+		// The list contains the path from the start vertex to the destination vertex
 		return path;
 	}
 	
@@ -116,11 +121,11 @@ public class BreadthFirstSearch<T extends Vertex> {
 		BreadthFirstSearch<Vertex> bfs = new BreadthFirstSearch<Vertex>(g);
 		bfs.search(v1);	
 		System.out.println(bfs.findPath(v7));
+		
 		bfs.search(v2);	
-		
 		System.out.println(bfs.findPath(v7));
-		bfs.search(v7);	
 		
+		bfs.search(v7);	
 		System.out.println(bfs.findPath(v1));
 	}
 }

@@ -68,13 +68,18 @@ public class DepthFirstSearch<T extends Vertex> {
 		if (destination == null) {
 			return null;
 		}
-
 		int currentId = destination.getId();
+		// If the destination has no predecessor, there is no path to it
+		if (predecessor[currentId] == -1) {
+			return null;
+		}
+		// Walk through the predecessors and add them at the front of the list
 		ArrayList<Integer> path = new ArrayList<Integer>();
 		while (currentId != -1) {
 			path.add(0, currentId);
 			currentId = predecessor[currentId];
-		}	
+		}
+		// The list contains the path from the start vertex to the destination vertex
 		return path;
 	}
 	
