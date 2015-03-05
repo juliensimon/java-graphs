@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import com.mygraph.core.Graph;
 import com.mygraph.core.Vertex;
 
+//As per "Algorithms in a Nutshell", O'Reilly, 2009
+
 public class FloydWarshall<T extends Vertex> {
 
 	private Graph<T> g;
@@ -67,6 +69,9 @@ public class FloydWarshall<T extends Vertex> {
 		return path;
 	}
 	
+	
+	// This method implements the Floyd-Warshall algorithm, 
+	// which finds the shortest path for any given pair of vertexes
 	public void search() {
 		
 		init();

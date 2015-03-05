@@ -72,10 +72,12 @@ public class BreadthFirstSearch<T extends Vertex> {
 			color[head.getId()] = BLACK;
 		}
 		
+		/*
 		for (int i=1;i<this.size+1;i++) {
 			System.out.print("predecessor["+i+"]="+predecessor[i]);
 			System.out.println(" distance["+i+"]="+distance[i]);
 		}
+		*/
 	}
 	
 	public ArrayList<Integer> findPath(T destination) {
@@ -95,37 +97,5 @@ public class BreadthFirstSearch<T extends Vertex> {
 		}
 		// The list contains the path from the start vertex to the destination vertex
 		return path;
-	}
-	
-	public static void main(String[] args) {
-		
-		Vertex v1 = new Vertex(1);
-		Vertex v2 = new Vertex(2);
-		Vertex v3 = new Vertex(3);
-		Vertex v4 = new Vertex(4);
-		Vertex v5 = new Vertex(5);
-		Vertex v6 = new Vertex(6);
-		Vertex v7 = new Vertex(7);
-
-		Graph<Vertex> g = new Graph<Vertex>(true);
-		g.addEdge(v1, v2, 2);
-		g.addEdge(v1, v3, 1);
-		g.addEdge(v2, v3, 2);
-		g.addEdge(v2, v5, 1);
-		g.addEdge(v2, v6, 1);
-		g.addEdge(v3, v4, 1);
-		g.addEdge(v3, v5, 3);
-		g.addEdge(v4, v7, 3);
-		g.addEdge(v5, v7, 2);
-		
-		BreadthFirstSearch<Vertex> bfs = new BreadthFirstSearch<Vertex>(g);
-		bfs.search(v1);	
-		System.out.println(bfs.findPath(v7));
-		
-		bfs.search(v2);	
-		System.out.println(bfs.findPath(v7));
-		
-		bfs.search(v7);	
-		System.out.println(bfs.findPath(v1));
 	}
 }

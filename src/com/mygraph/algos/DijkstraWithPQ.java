@@ -1,5 +1,6 @@
 package com.mygraph.algos;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.PriorityQueue;
@@ -80,7 +81,7 @@ public class DijkstraWithPQ<T extends Vertex> {
 		
 		while (pq.size() != 0) {
 
-			System.out.println(pq);
+			//System.out.println(pq);
 			
 			// Get and remove the vertex that is the closest to the start node (aka the min node)
 			// It's the first element of the list
@@ -114,35 +115,30 @@ public class DijkstraWithPQ<T extends Vertex> {
 				}
 			}
 		}
-		
+		/*
 		for (int i=1;i<this.size+1;i++) {
 			System.out.print("predecessor["+i+"]="+predecessor[i]);
 			System.out.println(" distance["+i+"]="+distance[i]);
 		}
+		*/
 	}
 	
-public static void main(String[] args) {
-
-		Vertex v1 = new Vertex(1);
-		Vertex v2 = new Vertex(2);
-		Vertex v3 = new Vertex(3);
-		Vertex v4 = new Vertex(4);
-		Vertex v5 = new Vertex(5);
-		Vertex v6 = new Vertex(6);
-		Vertex v7 = new Vertex(7);
-
-		Graph<Vertex> g = new Graph<Vertex>(false);
-		g.addEdge(v1, v2, 2);
-		g.addEdge(v1, v3, 1);
-		g.addEdge(v2, v3, 2);
-		g.addEdge(v2, v5, 1);
-		g.addEdge(v2, v6, 1);
-		g.addEdge(v3, v4, 1);
-		g.addEdge(v3, v5, 3);
-		g.addEdge(v4, v7, 3);
-		g.addEdge(v5, v7, 2);
-
-		DijkstraWithPQ<Vertex> d = new DijkstraWithPQ<Vertex>(g);
-		d.shortestPath(v1);	
+	public ArrayList<Integer> findPath(T destination) {
+		if (destination == null) {
+			return null;
+		}
+		int currentId = destination.getId();
+		// If the destination has no predecessor, there is no path to it
+		if (predecessor[currentId] == -1) {
+			return null;
+		}
+		// Walk through the predecessors and add them at the front of the list
+		ArrayList<Integer> path = new ArrayList<Integer>();
+		while (currentId != -1) {
+			path.add(0, currentId);
+			currentId = predecessor[currentId];
+		}
+		// The list contains the path from the start vertex to the destination vertex
+		return path;
 	}
 }
