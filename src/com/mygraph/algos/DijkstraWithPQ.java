@@ -1,19 +1,19 @@
 package com.mygraph.algos;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.PriorityQueue;
 
 import com.mygraph.core.Graph;
 import com.mygraph.core.Vertex;
 
 //As per "Algorithms in a Nutshell", O'Reilly, 2009
 
-class ListElement<T extends Vertex> {
+class QueueElement<T extends Vertex> {
 	private T 		vertex;
 	private int 	distance;
 	
-	ListElement(T vertex, int distance) {
+	QueueElement(T vertex, int distance) {
 		this.vertex 	= vertex;
 		this.distance 	= distance;
 	}
@@ -34,18 +34,13 @@ class ListElement<T extends Vertex> {
 		return "("+vertex.getId()+","+distance+")";
 	}
 	
-	@SuppressWarnings("unchecked")
-	public boolean equals(Object o) {
-		ListElement<T> e = (ListElement<T>)o;
-		return (e.getVertex().equals(vertex) && (e.getDistance()==distance));
-	}
 }
 
-class ListElementMinFirst implements Comparator<Object> {
+class QueueElementMinFirst implements Comparator<Object> {
 	@Override
 	public int compare(Object o1, Object o2) {
-		int i1 = ((ListElement<?>)o1).getDistance();
-		int i2 = ((ListElement<?>)o2).getDistance();
+		int i1 = ((QueueElement<?>)o1).getDistance();
+		int i2 = ((QueueElement<?>)o2).getDistance();
 		if (i1 == i2) return 0;
 		if (i1 > i2)  return 1;
 		else return -1;
@@ -54,7 +49,7 @@ class ListElementMinFirst implements Comparator<Object> {
 }
 
 // This is the well-known Dijsktra algorithm to find the shortest path from a single origin
-// This implementation uses a sorted ArrayList, simulating a PriorityQueue.
+// This implementation uses a PriorityQueue.
 public class DijkstraWithPQ<T extends Vertex> {
 	
 	private Graph<T> 	g;
@@ -78,34 +73,38 @@ public class DijkstraWithPQ<T extends Vertex> {
 		distance[start.getId()] = 0;
 		
 		// Build a list of (vertex, distance) couples
-		ArrayList<ListElement<T>> q = new ArrayList<ListElement<T>>();
+		PriorityQueue<QueueElement<T>> pq = new PriorityQueue<QueueElement<T>>(new QueueElementMinFirst());
 		for (T v : g.getVertices()) {
-			q.add(new ListElement<T>(v, distance[v.getId()]));
+			pq.add(new QueueElement<T>(v, distance[v.getId()]));
 		}
-		Collections.sort(q, new ListElementMinFirst());
-		System.out.println(q);
 		
-		while (q.size() != 0) {
-			// Sort the list
-			Collections.sort(q, new ListElementMinFirst());
-			System.out.println(q);
+		while (pq.size() != 0) {
+
+			System.out.println(pq);
+			
 			// Get and remove the vertex that is the closest to the start node (aka the min node)
 			// It's the first element of the list
-			T min = q.get(0).getVertex();
-			q.remove(0);
-			
+			T min = pq.poll().getVertex();
+						
 			// For each neighbor
 			for (T neighbor : g.getNeighbors(min)) {
 				// Get its distance to the min node 
 				int weight = g.isWeight(min, neighbor);
 				// Compute its distance from the start node
 				int newDistance = distance[min.getId()] + weight;
-				// If the distance is smaller than the one currently stored, update it
+				
+				// If the distance is smaller than the one currently stored,
 				if (newDistance < distance[neighbor.getId()]) {
-					for (int i=0;i<q.size();i++) {
-						ListElement<T> e = q.get(i);
+					// Find the neighbor in the queue
+					Iterator<QueueElement<T>> i = pq.iterator();
+					while (i.hasNext()) {
+						QueueElement<T> e = i.next();
 						if (e.getVertex().equals(neighbor)) {
+							// Update its distance to the start vertex
 							e.setDistance(newDistance);
+							// Remove and add again to maintain queue order
+							pq.remove(e);
+							pq.add(e);
 							break;
 						}
 						// Remember the new distance and the predecessor
@@ -146,5 +145,4 @@ public static void main(String[] args) {
 		DijkstraWithPQ<Vertex> d = new DijkstraWithPQ<Vertex>(g);
 		d.shortestPath(v1);	
 	}
-
 }
