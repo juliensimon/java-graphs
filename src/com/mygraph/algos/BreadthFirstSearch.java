@@ -1,5 +1,6 @@
 package com.mygraph.algos;
 
+import java.util.ArrayList;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -77,7 +78,21 @@ public class BreadthFirstSearch<T extends Vertex> {
 		}
 	}
 	
-public static void main(String[] args) {
+	public ArrayList<Integer> findPath(T destination) {
+		if (destination == null) {
+			return null;
+		}
+
+		int currentId = destination.getId();
+		ArrayList<Integer> path = new ArrayList<Integer>();
+		while (currentId != -1) {
+			path.add(0, currentId);
+			currentId = predecessor[currentId];
+		}	
+		return path;
+	}
+	
+	public static void main(String[] args) {
 		
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -87,7 +102,7 @@ public static void main(String[] args) {
 		Vertex v6 = new Vertex(6);
 		Vertex v7 = new Vertex(7);
 
-		Graph<Vertex> g = new Graph<Vertex>(false);
+		Graph<Vertex> g = new Graph<Vertex>(true);
 		g.addEdge(v1, v2, 2);
 		g.addEdge(v1, v3, 1);
 		g.addEdge(v2, v3, 2);
@@ -100,5 +115,12 @@ public static void main(String[] args) {
 		
 		BreadthFirstSearch<Vertex> bfs = new BreadthFirstSearch<Vertex>(g);
 		bfs.search(v1);	
+		System.out.println(bfs.findPath(v7));
+		bfs.search(v2);	
+		
+		System.out.println(bfs.findPath(v7));
+		bfs.search(v7);	
+		
+		System.out.println(bfs.findPath(v1));
 	}
 }
