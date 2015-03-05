@@ -340,6 +340,20 @@ public class TestGraph {
 	
 	@Test
 	public void testIsWeight() {
-		fail("Not implemented");
+		g = new Graph<Vertex>(true);
+		
+		g.addEdge(v1, v2);
+		g.addEdge(v1, v3, 2);
+		g.addEdge(v3, v1);
+		
+		assertEquals(g.isWeight(v1, null), 0);
+		assertEquals(g.isWeight(null, v2), 0);
+		
+		assertEquals(g.isWeight(v1, v2), 1);
+		assertEquals(g.isWeight(v2, v1), 0);
+		
+		assertEquals(g.isWeight(v1, v3), 2);
+		assertEquals(g.isWeight(v1, v4), 0);
 	}
+	
 }
