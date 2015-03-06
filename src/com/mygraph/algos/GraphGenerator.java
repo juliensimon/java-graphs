@@ -22,6 +22,11 @@ public class GraphGenerator {
 		this.rand = new Random(System.currentTimeMillis());
 	}
 	
+	public Vertex getRandomNode() {
+		Object[] vertices = g.getVertices().toArray();
+		return (Vertex)(vertices[rand.nextInt(vertices.length)]);
+	}
+	
 	public Graph<Vertex> build() {
 		
 		Vertex[] vertexArray = new Vertex[vertexCount+1];
@@ -49,11 +54,7 @@ public class GraphGenerator {
 			if (g.addEdge(vertexArray[src], vertexArray[dst], weight)) {
 				counter++;
 			};
-		}
-		if (g.countVertices() != vertexCount) {
-			
-		}
-				
+		}				
 		return g;
 	}
 
@@ -63,10 +64,9 @@ public class GraphGenerator {
 		//g.display();
 		
 		DijkstraWithPQ<Vertex> d = new DijkstraWithPQ<>(g);
-		Object[] vertices = g.getVertices().toArray();
 				
-		Vertex src = (Vertex)vertices[gg.rand.nextInt(vertices.length)];
-		Vertex dst = (Vertex)vertices[gg.rand.nextInt(vertices.length)];
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
 		
 		d.shortestPath(src);
 		System.out.println(d.findPath(dst));
