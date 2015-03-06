@@ -141,4 +141,22 @@ public class DijkstraWithPQ<T extends Vertex> {
 		// The list contains the path from the start vertex to the destination vertex
 		return path;
 	}
+	
+	public int findPathWeight(T destination) {
+		if (destination == null) {
+			return 0;
+		}
+		int currentId = destination.getId();
+		// If the destination has no predecessor, there is no path to it
+		if (predecessor[currentId] == -1) {
+			return 0;
+		}
+		// Walk through the predecessors and add the weight of each edge
+		int weight = 0;
+		while (currentId != -1) {
+			weight += g.isWeight(g.getVertex(predecessor[currentId]), g.getVertex(currentId));
+			currentId = predecessor[currentId];
+		}
+		return weight;
+	}
 }

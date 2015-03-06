@@ -49,6 +49,8 @@ public class TestDijkstraWithPQ {
 		assertEquals(path.get(1), (Integer)3);
 		assertEquals(path.get(2), (Integer)4);
 		assertEquals(path.get(3), (Integer)7);
+		
+		// XXX test findPathWeight()
 	}
 
 }
