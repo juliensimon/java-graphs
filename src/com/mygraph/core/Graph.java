@@ -32,6 +32,15 @@ public class Graph<T extends Vertex> {
 		return count;
 	}
 	
+	public T getVertex(int id) {
+		for (T v : vertices.keySet()) {
+			if (v.getId() == id) {
+				return v;
+			}
+		}
+		return null;
+	}
+	
 	public Set<T> getNeighbors(T v) {
 		if (v == null) {
 			return null;
