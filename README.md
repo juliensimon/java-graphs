@@ -14,4 +14,5 @@
 - <i>FloydWarshall</i>: find the guaranteed shortest-path between any pair of vertexes
 - <i>TestXXX</i>: unit tests for class XXX.
 
+Reference: "Algorithms in a nutshell", O'Reilly, 2009.
 
