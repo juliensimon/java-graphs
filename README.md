@@ -8,8 +8,8 @@
 
 <b>com.mygraph.algos</b>
 - <code>GraphGenerator</code> : utility class to generate random graphs.
-- <code>DepthFirstSearch\<T extends Vertex></code>: walk a graph depth-first and find a path (not guaranteed to be shortest) between any two vertices.
-- <code>BreadthFirstSearch\<T extends Vertex></code>: walk a graph breadth-first and find a path (not guaranteed to be shortest) between any two  vertices.
+- <code>DepthFirstSearch\<T extends Vertex></code>: walk a graph depth-first and find a path (not guaranteed to be shortest) between a start vertex and any other vertex.
+- <code>BreadthFirstSearch\<T extends Vertex></code>: walk a graph breadth-first and find a path (not guaranteed to be shortest) between a start vertex and any other vertex.
 - <code>DijkstraWithPQ\<T extends Vertex></code>: find the guaranteed shortest-path between a start vertex and any other vertex. This implementation uses a priority queue.
 - <code>FloydWarshall\<T extends Vertex></code>: find the guaranteed shortest-path between any pair of vertices.
 - <code>TestXXX</code>: unit tests for class XXX.
