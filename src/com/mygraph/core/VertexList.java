@@ -3,7 +3,7 @@ package com.mygraph.core;
 import java.util.HashMap;
 import java.util.Set;
 
-public class VertexList<T extends Vertex> {
+class VertexList<T extends Vertex> {
 	
 	private int 				sourceId;
 	private HashMap<T, Integer> edges;
