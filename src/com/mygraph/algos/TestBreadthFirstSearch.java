@@ -68,4 +68,17 @@ public class TestBreadthFirstSearch {
 		path = bfs.findPath(v1);
 		assertEquals(path, null);
 	}
+	
+	@Test
+	public void test4() {
+		GraphGenerator gg = new GraphGenerator(1000, 900000, 1000, true);
+		Graph<Vertex> g = gg.build();
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
+		
+		bfs = new BreadthFirstSearch<Vertex>(g);
+		bfs.search(src);
+		path = bfs.findPath(dst);		
+		assertFalse(path == null);
+	}
 }

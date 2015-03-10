@@ -39,14 +39,14 @@ public class FloydWarshall<T extends Vertex> {
 		}		
 	}
 	
-	private void printDistance() {
+	/*private void printDistance() {
 		for (int i=1;i<=size;i++) {
 			for (int j=1;j<=size;j++) {
 				System.out.print(distance[i][j]+ "\t");
 			}
 			System.out.println();
 		}
-	}
+	}*/
 	
 	public ArrayList<Integer> findShortestPath(T source, T destination) {
 		if ( (source == null) || (destination == null)) {

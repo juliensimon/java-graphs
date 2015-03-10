@@ -68,5 +68,18 @@ public class TestFloydWarshall {
 		path = fw.findShortestPath(v7, v1);
 		assertEquals(path, null);
 	}
+	
+	@Test
+	public void test4() {
+		GraphGenerator gg = new GraphGenerator(100, 5000, 100, true);
+		Graph<Vertex> g = gg.build();
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
+		
+		fw = new FloydWarshall<Vertex>(g);
+		fw.search();
+		path = fw.findShortestPath(src, dst);		
+		assertFalse(path == null);
+	}
 
 }

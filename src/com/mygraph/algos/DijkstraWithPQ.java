@@ -115,12 +115,6 @@ public class DijkstraWithPQ<T extends Vertex> {
 				}
 			}
 		}
-		/*
-		for (int i=1;i<this.size+1;i++) {
-			System.out.print("predecessor["+i+"]="+predecessor[i]);
-			System.out.println(" distance["+i+"]="+distance[i]);
-		}
-		*/
 	}
 	
 	public ArrayList<Integer> findPath(T destination) {

@@ -57,20 +57,4 @@ public class GraphGenerator {
 		}				
 		return g;
 	}
-
-	public static void main(String[] args) {
-		GraphGenerator gg = new GraphGenerator(10000, 100000, 10, true);
-		Graph<Vertex> g = gg.build();
-		//g.display();
-		
-		DijkstraWithPQ<Vertex> d = new DijkstraWithPQ<>(g);
-				
-		Vertex src = gg.getRandomNode();
-		Vertex dst = gg.getRandomNode();
-		
-		d.shortestPath(src);
-		System.out.println(d.findPath(dst));
-		System.out.println(d.findPathWeight(dst));
-
-	}
 }

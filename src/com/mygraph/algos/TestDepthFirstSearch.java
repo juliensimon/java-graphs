@@ -57,4 +57,17 @@ public class TestDepthFirstSearch {
 		path = dfs.findPath(v1);
 		assertEquals(path, null);
 	}
+	
+	@Test
+	public void test4() {
+		GraphGenerator gg = new GraphGenerator(1000, 900000, 1000, true);
+		Graph<Vertex> g = gg.build();
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
+		
+		dfs = new DepthFirstSearch<Vertex>(g);
+		dfs.search(src);
+		path = dfs.findPath(dst);		
+		assertFalse(path == null);
+	}
 }
