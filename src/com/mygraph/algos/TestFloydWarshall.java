@@ -1,9 +1,8 @@
 package com.mygraph.algos;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +15,7 @@ public class TestFloydWarshall {
 	Graph<Vertex> g;
 	FloydWarshall<Vertex> fw;
 	ArrayList<Integer> path;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		v1 = new Vertex(1);
@@ -44,42 +43,28 @@ public class TestFloydWarshall {
 		fw = new FloydWarshall<Vertex>(g);
 		fw.search();
 		path = fw.findShortestPath(v1, v6);
-		assertEquals(path.size(), 3);
-		assertEquals(path.get(0), (Integer)1);
-		assertEquals(path.get(1), (Integer)2);
-		assertEquals(path.get(2), (Integer)6);
+		Assert.assertEquals(path.size(), 3);
+		Assert.assertEquals(path.get(0), (Integer) 1);
+		Assert.assertEquals(path.get(1), (Integer) 2);
+		Assert.assertEquals(path.get(2), (Integer) 6);
 	}
-	
+
 	@Test
 	public void test2() {
 		fw = new FloydWarshall<Vertex>(g);
 		fw.search();
 		path = fw.findShortestPath(v2, v7);
-		assertEquals(path.size(), 3);
-		assertEquals(path.get(0), (Integer)2);
-		assertEquals(path.get(1), (Integer)5);
-		assertEquals(path.get(2), (Integer)7);
+		Assert.assertEquals(path.size(), 3);
+		Assert.assertEquals(path.get(0), (Integer) 2);
+		Assert.assertEquals(path.get(1), (Integer) 5);
+		Assert.assertEquals(path.get(2), (Integer) 7);
 	}
-	
+
 	@Test
 	public void test3() {
 		fw = new FloydWarshall<Vertex>(g);
 		fw.search();
 		path = fw.findShortestPath(v7, v1);
-		assertEquals(path, null);
+		Assert.assertEquals(path, null);
 	}
-	
-	@Test
-	public void test4() {
-		GraphGenerator gg = new GraphGenerator(100, 5000, 100, true);
-		Graph<Vertex> g = gg.build();
-		Vertex src = gg.getRandomNode();
-		Vertex dst = gg.getRandomNode();
-		
-		fw = new FloydWarshall<Vertex>(g);
-		fw.search();
-		path = fw.findShortestPath(src, dst);		
-		assertFalse(path == null);
-	}
-
 }

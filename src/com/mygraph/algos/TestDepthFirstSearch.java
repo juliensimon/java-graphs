@@ -1,9 +1,8 @@
 package com.mygraph.algos;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +15,7 @@ public class TestDepthFirstSearch {
 	Graph<Vertex> g;
 	DepthFirstSearch<Vertex> dfs;
 	ArrayList<Integer> path;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		v1 = new Vertex(1);
@@ -36,7 +35,7 @@ public class TestDepthFirstSearch {
 		g.addEdge(v3, v4, 1);
 		g.addEdge(v3, v5, 3);
 		g.addEdge(v4, v7, 3);
-		g.addEdge(v5, v7, 2);		
+		g.addEdge(v5, v7, 2);
 	}
 
 	@Test
@@ -44,30 +43,30 @@ public class TestDepthFirstSearch {
 		dfs = new DepthFirstSearch<Vertex>(g);
 		dfs.search(v1);
 		path = dfs.findPath(v6);
-		assertEquals(path.size(), 3);
-		assertEquals(path.get(0), (Integer)1);
-		assertEquals(path.get(1), (Integer)2);
-		assertEquals(path.get(2), (Integer)6);
+		Assert.assertEquals(path.size(), 3);
+		Assert.assertEquals(path.get(0), (Integer) 1);
+		Assert.assertEquals(path.get(1), (Integer) 2);
+		Assert.assertEquals(path.get(2), (Integer) 6);
 	}
-		
+
 	@Test
 	public void test3() {
 		dfs = new DepthFirstSearch<Vertex>(g);
 		dfs.search(v7);
 		path = dfs.findPath(v1);
-		assertEquals(path, null);
+		Assert.assertEquals(path, null);
 	}
-	
+
 	@Test
 	public void test4() {
 		GraphGenerator gg = new GraphGenerator(1000, 900000, 1000, true);
 		Graph<Vertex> g = gg.build();
 		Vertex src = gg.getRandomNode();
 		Vertex dst = gg.getRandomNode();
-		
+
 		dfs = new DepthFirstSearch<Vertex>(g);
 		dfs.search(src);
-		path = dfs.findPath(dst);		
-		assertFalse(path == null);
+		path = dfs.findPath(dst);
+		Assert.assertFalse(path == null);
 	}
 }

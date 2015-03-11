@@ -1,9 +1,8 @@
 package com.mygraph.algos;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,12 +10,12 @@ import com.mygraph.core.Graph;
 import com.mygraph.core.Vertex;
 
 public class TestDijkstraWithPQ {
-	
+
 	Vertex v1, v2, v3, v4, v5, v6, v7;
 	Graph<Vertex> g;
 	DijkstraWithPQ<Vertex> d;
 	ArrayList<Integer> path;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		v1 = new Vertex(1);
@@ -36,40 +35,38 @@ public class TestDijkstraWithPQ {
 		g.addEdge(v3, v4, 1);
 		g.addEdge(v3, v5, 3);
 		g.addEdge(v4, v7, 3);
-		g.addEdge(v5, v7, 2);		
+		g.addEdge(v5, v7, 2);
 	}
 
 	@Test
 	public void test() {
 		DijkstraWithPQ<Vertex> d = new DijkstraWithPQ<Vertex>(g);
-		
-		assertEquals(d.findPath(null), null);
-		assertEquals(d.findPathWeight(null), 0);
+
+		Assert.assertEquals(d.findPath(null), null);
+		Assert.assertEquals(d.findPathWeight(null), 0);
 
 		d.shortestPath(v1);
 		path = d.findPath(v7);
-		assertEquals(path.size(), 4);
-		assertEquals(path.get(0), (Integer)1);
-		assertEquals(path.get(1), (Integer)3);
-		assertEquals(path.get(2), (Integer)4);
-		assertEquals(path.get(3), (Integer)7);
-		assertEquals(d.findPathWeight(v7), 5);
+		Assert.assertEquals(path.size(), 4);
+		Assert.assertEquals(path.get(0), (Integer) 1);
+		Assert.assertEquals(path.get(1), (Integer) 3);
+		Assert.assertEquals(path.get(2), (Integer) 4);
+		Assert.assertEquals(path.get(3), (Integer) 7);
+		Assert.assertEquals(d.findPathWeight(v7), 5);
 	}
-	
+
 	@Test
 	public void test2() {
 		GraphGenerator gg = new GraphGenerator(1000, 900000, 1000, true);
 		Graph<Vertex> g = gg.build();
 		Vertex src = gg.getRandomNode();
 		Vertex dst = gg.getRandomNode();
-		
+
 		DijkstraWithPQ<Vertex> d = new DijkstraWithPQ<Vertex>(g);
 		d.shortestPath(src);
 		path = d.findPath(dst);
-		assertFalse(path == null);
-		
+		Assert.assertFalse(path == null);
+
 	}
-	
-	
 
 }
