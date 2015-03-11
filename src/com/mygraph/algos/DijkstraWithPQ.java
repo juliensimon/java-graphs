@@ -37,16 +37,15 @@ class QueueElement<T extends Vertex> {
 	
 }
 
-class QueueElementMinFirst implements Comparator<Object> {
+class QueueElementMinFirst<T extends Vertex> implements Comparator<QueueElement<T>> {
 	@Override
-	public int compare(Object o1, Object o2) {
-		int i1 = ((QueueElement<?>)o1).getDistance();
-		int i2 = ((QueueElement<?>)o2).getDistance();
+	public int compare(QueueElement<T> e1, QueueElement<T> e2) {
+		int i1 = e1.getDistance();
+		int i2 = e2.getDistance();
 		if (i1 == i2) return 0;
 		if (i1 > i2)  return 1;
 		else return -1;
 	}
-
 }
 
 // This is the well-known Dijsktra algorithm to find the shortest path from a single origin
