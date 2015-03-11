@@ -17,7 +17,12 @@ public class Vertex {
 	}
 	
 	public boolean equals(Object o) {
+		if (o==null) return false;
 		Vertex v = (Vertex)o;
 		return (id == v.getId());
+	}
+	
+	public int hashCode() {
+		return id;
 	}
 }

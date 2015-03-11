@@ -68,7 +68,7 @@ public class BreadthFirstSearch<T extends Vertex> {
 				}
 			}
 			// Remove the head, it has been visited and all its neighbors too
-			q.poll();
+			T discarded = q.poll();
 			color[head.getId()] = BLACK;
 		}
 		
