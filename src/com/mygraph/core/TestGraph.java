@@ -198,6 +198,10 @@ public class TestGraph {
 
 		Assert.assertFalse(g.hasEdge(v1, null));
 		Assert.assertFalse(g.hasEdge(null, v1));
+		
+		Assert.assertFalse(g.hasEdge(v1, v2, 0));
+		Assert.assertFalse(g.hasEdge(null, v2, 1));
+		Assert.assertFalse(g.hasEdge(v1, null, 1));
 
 		g.addEdge(v1, v2);
 		g.addEdge(v1, v3, 2);
@@ -274,6 +278,8 @@ public class TestGraph {
 		g.addEdge(v3, v4);
 
 		Vertex v5 = new Vertex(5);
+
+		Assert.assertEquals(g.getNeighbors(null), null);
 
 		Set<Vertex> neighbors = g.getNeighbors(v1);
 		Assert.assertTrue(neighbors.contains(v2));
@@ -353,4 +359,14 @@ public class TestGraph {
 		Assert.assertEquals(g.isWeight(v1, v4), 0);
 	}
 
+	@Test
+	public void testDisplay() {
+		g = new Graph<Vertex>(true);
+
+		g.addEdge(v1, v2);
+		g.addEdge(v1, v3, 2);
+		g.addEdge(v3, v1);
+		
+		g.display();
+	}
 }
