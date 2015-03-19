@@ -61,6 +61,7 @@ public class TestTopologicalSortDFS {
 
 	@Test
 	public void test3() {
+		// Test with a cyclical graph
 		g = new Graph<Vertex>(true);
 		g.addEdge(v1, v2, 1);
 		g.addEdge(v2, v3, 1);
