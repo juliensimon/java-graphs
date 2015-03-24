@@ -56,7 +56,26 @@ public class TestDijkstraWithPQ {
 	}
 
 	@Test
-	public void test2() {
+	public void testCycle() {
+		DijkstraWithPQ<Vertex> d = new DijkstraWithPQ<Vertex>(g);
+
+		g.addEdge(v7, v1, 1);
+
+		d.shortestPath(v1);
+
+		path = d.findPath(v7);
+		Assert.assertEquals(path.size(), 4);
+		Assert.assertEquals(path.get(0), (Integer) 1);
+		Assert.assertEquals(path.get(1), (Integer) 3);
+		Assert.assertEquals(path.get(2), (Integer) 4);
+		Assert.assertEquals(path.get(3), (Integer) 7);
+		Assert.assertEquals(d.findPathWeight(v7), 5);
+		
+		g.removeEdge(v7, v1);
+	}
+	
+	@Test
+	public void testLargeGraph() {
 		GraphGenerator gg = new GraphGenerator(1000, 900000, 1000, true);
 		Graph<Vertex> g = gg.build();
 		Vertex src = gg.getRandomNode();

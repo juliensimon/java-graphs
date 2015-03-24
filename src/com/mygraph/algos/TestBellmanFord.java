@@ -56,8 +56,22 @@ public class TestBellmanFord {
 		Assert.assertEquals(bf.findPathWeight(v7), 5);
 	}
 	
-	//TODO: add test for cycle graph
+	@Test
+	public void testCycle() {
+		BellmanFord<Vertex> bf = new BellmanFord<Vertex>(g);
 
-	//TODO: add test for negative cycle graph
-	
+		g.addEdge(v7, v1, 1);
+
+		bf.shortestPath(v1);
+
+		path = bf.findPath(v7);
+		Assert.assertEquals(path.size(), 4);
+		Assert.assertEquals(path.get(0), (Integer) 1);
+		Assert.assertEquals(path.get(1), (Integer) 3);
+		Assert.assertEquals(path.get(2), (Integer) 4);
+		Assert.assertEquals(path.get(3), (Integer) 7);
+		Assert.assertEquals(bf.findPathWeight(v7), 5);
+		
+		g.removeEdge(v7, v1);
+	}
 }
