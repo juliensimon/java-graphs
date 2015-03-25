@@ -59,6 +59,10 @@ public class Graph<T extends Vertex> {
 		if ((source == null) || (destination == null) || (weight == 0)) {
 			return false;
 		}
+		if (source.getId() == destination.getId()) {
+			return false;
+		}
+		
 		// Add vertices if they're not already in the graph
 		if (!vertices.containsKey(source)) {
 			vertices.put(source, new VertexList<T>(source.getId()));
