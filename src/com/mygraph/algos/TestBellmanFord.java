@@ -45,7 +45,7 @@ public class TestBellmanFord {
 		Assert.assertEquals(bf.findPath(null), null);
 		Assert.assertEquals(bf.findPathWeight(null), 0);
 
-		bf.shortestPath(v1);
+		Assert.assertTrue(bf.shortestPath(v1));
 
 		path = bf.findPath(v7);
 		Assert.assertEquals(path.size(), 4);
@@ -62,7 +62,7 @@ public class TestBellmanFord {
 
 		g.addEdge(v7, v1, 1);
 
-		bf.shortestPath(v1);
+		Assert.assertTrue(bf.shortestPath(v1));
 
 		path = bf.findPath(v7);
 		Assert.assertEquals(path.size(), 4);
@@ -72,6 +72,15 @@ public class TestBellmanFord {
 		Assert.assertEquals(path.get(3), (Integer) 7);
 		Assert.assertEquals(bf.findPathWeight(v7), 5);
 		
+		g.removeEdge(v7, v1);
+	}
+	
+	@Test
+	public void testNegativeCycle() {
+		BellmanFord<Vertex> bf = new BellmanFord<Vertex>(g);
+
+		g.addEdge(v7, v1, -10);
+		Assert.assertFalse(bf.shortestPath(v1));
 		g.removeEdge(v7, v1);
 	}
 }

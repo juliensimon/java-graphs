@@ -19,7 +19,7 @@ public class BellmanFord<T extends Vertex> {
 		predecessor = new int[size + 1];
 	}
 
-	public void shortestPath(T start) {
+	public boolean shortestPath(T start) {
 		// Start with infinite distances between the start vertex and all others
 		for (int i = 1; i <= this.size; i++) {
 			distance[i] = Integer.MAX_VALUE;
@@ -38,7 +38,7 @@ public class BellmanFord<T extends Vertex> {
 					if (newDist < distance[w.getId()]) {
 						if (i == this.size) {
 							System.out.println("Negative cycle");
-							return;
+							return false;
 						}
 						distance[w.getId()] = newDist;
 						predecessor[w.getId()] = v.getId();
@@ -51,6 +51,8 @@ public class BellmanFord<T extends Vertex> {
 		 * for (int i=1; i<this.size;i++) {
 		 * System.out.println("pred["+i+"]"+"="+predecessor[i]); }
 		 */
+		
+		return true;
 	}
 
 	// Reused from DijkstraWithPQ.java
