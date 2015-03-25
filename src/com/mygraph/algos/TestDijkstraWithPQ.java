@@ -75,7 +75,20 @@ public class TestDijkstraWithPQ {
 	}
 	
 	@Test
-	public void testLargeGraph() {
+	public void testLargeSparseGraph() {
+		GraphGenerator gg = new GraphGenerator(1000, 10000, 1000, true);
+		Graph<Vertex> g = gg.build();
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
+
+		DijkstraWithPQ<Vertex> d = new DijkstraWithPQ<Vertex>(g);
+		d.shortestPath(src);
+		path = d.findPath(dst);
+		Assert.assertFalse(path == null);
+	}
+	
+	@Test
+	public void testLargeDenseGraph() {
 		GraphGenerator gg = new GraphGenerator(1000, 900000, 1000, true);
 		Graph<Vertex> g = gg.build();
 		Vertex src = gg.getRandomNode();
@@ -85,7 +98,32 @@ public class TestDijkstraWithPQ {
 		d.shortestPath(src);
 		path = d.findPath(dst);
 		Assert.assertFalse(path == null);
+	}
+	
+	@Test
+	public void testVeryLargeSparseGraph() {
+		GraphGenerator gg = new GraphGenerator(10000, 100000, 1000, true);
+		Graph<Vertex> g = gg.build();
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
 
+		DijkstraWithPQ<Vertex> d = new DijkstraWithPQ<Vertex>(g);
+		d.shortestPath(src);
+		path = d.findPath(dst);
+		Assert.assertFalse(path == null);
+	}
+	
+	@Test
+	public void testVeryLargeDenseGraph() {
+		GraphGenerator gg = new GraphGenerator(10000, 10000000, 1000, true);
+		Graph<Vertex> g = gg.build();
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
+
+		DijkstraWithPQ<Vertex> d = new DijkstraWithPQ<Vertex>(g);
+		d.shortestPath(src);
+		path = d.findPath(dst);
+		Assert.assertFalse(path == null);
 	}
 
 }

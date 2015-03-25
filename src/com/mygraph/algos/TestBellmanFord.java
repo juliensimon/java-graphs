@@ -86,7 +86,59 @@ public class TestBellmanFord {
 	}
 	
 	@Test
-	public void testLargeGraph() {
+	public void testLargeSparseGraph() {
+		GraphGenerator gg = new GraphGenerator(1000, 100000, 1000, true);
+		Graph<Vertex> g = gg.build();
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
+
+		BellmanFord<Vertex> bf = new BellmanFord<Vertex>(g);
+		Assert.assertTrue(bf.shortestPath(src));
+		path2 = bf.findPath(dst);
+		Assert.assertFalse(path2 == null);
+	}
+	
+	@Test
+	public void testLargeDenseGraph() {
+		GraphGenerator gg = new GraphGenerator(1000, 900000, 1000, true);
+		Graph<Vertex> g = gg.build();
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
+
+		BellmanFord<Vertex> bf = new BellmanFord<Vertex>(g);
+		Assert.assertTrue(bf.shortestPath(src));
+		path2 = bf.findPath(dst);
+		Assert.assertFalse(path2 == null);
+	}
+	
+	@Test
+	public void testVeryLargeSparseGraph() {
+		GraphGenerator gg = new GraphGenerator(10000, 100000, 1000, true);
+		Graph<Vertex> g = gg.build();
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
+
+		BellmanFord<Vertex> bf = new BellmanFord<Vertex>(g);
+		Assert.assertTrue(bf.shortestPath(src));
+		path2 = bf.findPath(dst);
+		Assert.assertFalse(path2 == null);
+	}
+	
+	@Test
+	public void testVeryLargeDenseGraph() {
+		GraphGenerator gg = new GraphGenerator(10000, 10000000, 1000, true);
+		Graph<Vertex> g = gg.build();
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
+
+		BellmanFord<Vertex> bf = new BellmanFord<Vertex>(g);
+		Assert.assertTrue(bf.shortestPath(src));
+		path2 = bf.findPath(dst);
+		Assert.assertFalse(path2 == null);
+	}
+	
+	@Test
+	public void testLargeSparseGraphAndCompareWithDijkstra() {
 		GraphGenerator gg = new GraphGenerator(1000, 100000, 1000, true);
 		Graph<Vertex> g = gg.build();
 		Vertex src = gg.getRandomNode();
@@ -103,6 +155,5 @@ public class TestBellmanFord {
 		Assert.assertFalse(path2 == null);
 		
 		Assert.assertTrue(path.equals(path2));
-
 	}
 }
