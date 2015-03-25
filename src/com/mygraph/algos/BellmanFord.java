@@ -30,9 +30,14 @@ public class BellmanFord<T extends Vertex> {
 		for (int i = 1; i <= this.size; i++) {
 			// For each node,
 			for (T v : g.getVertices()) {
+				if (distance[v.getId()] == Integer.MAX_VALUE) {
+					continue;
+				}
+
 				// Go through each of its neighbors
 				// and check if the distance to the start vertex is shorter
 				for (T w : g.getNeighbors(v)) {
+
 					int newDist = distance[v.getId()] + g.isWeight(v, w);
 					// If it is, record the new distance
 					if (newDist < distance[w.getId()]) {
@@ -51,7 +56,7 @@ public class BellmanFord<T extends Vertex> {
 		 * for (int i=1; i<this.size;i++) {
 		 * System.out.println("pred["+i+"]"+"="+predecessor[i]); }
 		 */
-		
+
 		return true;
 	}
 
