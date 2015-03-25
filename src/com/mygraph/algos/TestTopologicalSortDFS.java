@@ -56,7 +56,7 @@ public class TestTopologicalSortDFS {
 		topo = new TopologicalSortDFS<Vertex>(g);
 		list = topo.sort(v1);
 		Assert.assertTrue(list != null);
-		System.out.println(list);
+		//System.out.println(list);
 	}
 
 	@Test

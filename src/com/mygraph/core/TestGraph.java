@@ -124,6 +124,7 @@ public class TestGraph {
 		Assert.assertFalse(g.addEdge(null, v1));
 		Assert.assertFalse(g.addEdge(null, v1, 1));
 		Assert.assertFalse(g.addEdge(v1, v2, 0));
+		Assert.assertFalse(g.addEdge(v1, v1));
 
 		Assert.assertTrue(g.addEdge(v1, v2));
 		Assert.assertFalse(g.addEdge(v1, v2));
@@ -146,6 +147,7 @@ public class TestGraph {
 
 		Assert.assertFalse(g.removeEdge(v1, null));
 		Assert.assertFalse(g.removeEdge(null, v1));
+		Assert.assertFalse(g.addEdge(v1, v1));
 
 		g.addEdge(v1, v2);
 		g.addEdge(v1, v3);
