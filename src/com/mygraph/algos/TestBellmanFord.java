@@ -14,7 +14,7 @@ public class TestBellmanFord {
 	Vertex v1, v2, v3, v4, v5, v6, v7;
 	Graph<Vertex> g;
 	BellmanFord<Vertex> bf;
-	ArrayList<Integer> path;
+	ArrayList<Integer> path, path2;
 
 	@Before
 	public void setUp() throws Exception {
@@ -43,6 +43,7 @@ public class TestBellmanFord {
 		BellmanFord<Vertex> bf = new BellmanFord<Vertex>(g);
 
 		Assert.assertEquals(bf.findPath(null), null);
+
 		Assert.assertEquals(bf.findPathWeight(null), 0);
 
 		Assert.assertTrue(bf.shortestPath(v1));
@@ -82,5 +83,26 @@ public class TestBellmanFord {
 		g.addEdge(v7, v1, -10);
 		Assert.assertFalse(bf.shortestPath(v1));
 		g.removeEdge(v7, v1);
+	}
+	
+	@Test
+	public void testLargeGraph() {
+		GraphGenerator gg = new GraphGenerator(1000, 100000, 1000, true);
+		Graph<Vertex> g = gg.build();
+		Vertex src = gg.getRandomNode();
+		Vertex dst = gg.getRandomNode();
+
+		DijkstraWithPQ<Vertex> d = new DijkstraWithPQ<Vertex>(g);
+		d.shortestPath(src);
+		path = d.findPath(dst);
+		Assert.assertFalse(path == null);
+		
+		BellmanFord<Vertex> bf = new BellmanFord<Vertex>(g);
+		Assert.assertTrue(bf.shortestPath(src));
+		path2 = bf.findPath(dst);
+		Assert.assertFalse(path2 == null);
+		
+		Assert.assertTrue(path.equals(path2));
+
 	}
 }
