@@ -53,13 +53,13 @@ public class Graph<T extends Vertex> {
 	}
 
 	// This method adds an edge to the graph
-	// It will add the source and destination vertexes if needed
+	// It will add the source and destination vertices if needed
 	// if the edge already exists, it won't be duplicated
 	public boolean addEdge(T source, T destination, int weight) {
-		if ((source == null) || (destination == null) || (weight <= 0)) {
+		if ((source == null) || (destination == null) || (weight == 0)) {
 			return false;
 		}
-		// Add vertexes if they're not already in the graph
+		// Add vertices if they're not already in the graph
 		if (!vertices.containsKey(source)) {
 			vertices.put(source, new VertexList<T>(source.getId()));
 		}
@@ -96,7 +96,7 @@ public class Graph<T extends Vertex> {
 	}
 
 	public boolean hasEdge(T source, T destination, int weight) {
-		if ((source == null) || (destination == null) || (weight <= 0)) {
+		if ((source == null) || (destination == null) || (weight == 0)) {
 			return false;
 		}
 		return vertices.get(source).hasEdgeTo(destination, weight);
