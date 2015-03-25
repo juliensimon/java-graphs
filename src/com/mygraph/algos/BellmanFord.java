@@ -28,6 +28,7 @@ public class BellmanFord<T extends Vertex> {
 		distance[start.getId()] = 0;
 
 		for (int i = 1; i <= this.size; i++) {
+			boolean found = false;
 			// For each node,
 			for (T v : g.getVertices()) {
 				if (distance[v.getId()] == Integer.MAX_VALUE) {
@@ -45,10 +46,15 @@ public class BellmanFord<T extends Vertex> {
 							System.out.println("Negative cycle");
 							return false;
 						}
+						found = true;
 						distance[w.getId()] = newDist;
 						predecessor[w.getId()] = v.getId();
 					}
 				}
+			}
+			// No shorter route has been found for this round, we're done
+			if (!found) {
+				break;
 			}
 		}
 
