@@ -36,24 +36,26 @@ public class BellmanFord<T extends Vertex> {
 			boolean found = false;
 			// For each node,
 			for (T v : g.getVertices()) {
-				if (distance[v.getId()] == Integer.MAX_VALUE) {
+				int vId = v.getId();
+				if (distance[vId] == Integer.MAX_VALUE) {
 					continue;
 				}
 
 				// Go through each of its neighbors
 				// and check if the distance to the start vertex is shorter
 				for (T w : g.getNeighbors(v)) {
-
-					int newDist = distance[v.getId()] + g.isWeight(v, w);
+					
+					int newDist = distance[vId] + g.isWeight(v, w);
 					// If it is, record the new distance
-					if (newDist < distance[w.getId()]) {
+					int wId = w.getId();
+					if (newDist < distance[wId]) {
 						if (i == this.size) {
 							System.out.println("Negative cycle");
 							return false;
 						}
 						found = true;
-						distance[w.getId()] = newDist;
-						predecessor[w.getId()] = v.getId();
+						distance[wId] = newDist;
+						predecessor[wId] = vId;
 					}
 				}
 			}

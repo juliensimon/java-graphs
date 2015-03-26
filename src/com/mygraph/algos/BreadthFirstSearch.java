@@ -38,7 +38,7 @@ public class BreadthFirstSearch<T extends Vertex> {
 	}
 
 	private void init() {
-		for (int i = 1; i < (this.size + 1); i++) {
+		for (int i = 1; i <= this.size; i++) {
 			predecessor[i] = -1;
 			distance[i] = Integer.MAX_VALUE;
 			color[i] = BreadthFirstSearch.WHITE;
@@ -60,15 +60,17 @@ public class BreadthFirstSearch<T extends Vertex> {
 			T head = q.peek();
 
 			// For each of its neighbors,
+			int headId = head.getId();
 			for (T v : g.getNeighbors(head)) {
 				// If they haven't been visited yet,
-				if (color[v.getId()] == BreadthFirstSearch.WHITE) {
+				int vId = v.getId();
+				if (color[vId] == BreadthFirstSearch.WHITE) {
 					// Increment its distance from the start vertex
-					distance[v.getId()] = distance[head.getId()] + 1;
+					distance[vId] = distance[headId] + 1;
 					// Set its predecessor
-					predecessor[v.getId()] = head.getId();
+					predecessor[vId] = headId;
 					// Mark it as visited
-					color[v.getId()] = BreadthFirstSearch.GRAY;
+					color[vId] = BreadthFirstSearch.GRAY;
 					// Add it to the queue
 					q.add(v);
 				}
@@ -77,7 +79,7 @@ public class BreadthFirstSearch<T extends Vertex> {
 			T discarded = q.poll();
 			assert (discarded != null);
 
-			color[head.getId()] = BreadthFirstSearch.BLACK;
+			color[headId] = BreadthFirstSearch.BLACK;
 		}
 
 		/*

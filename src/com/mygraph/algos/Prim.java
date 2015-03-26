@@ -61,9 +61,10 @@ public class Prim<T extends Vertex> {
 					if (e.getVertex().equals(neighbor)) {
 						int w = g.isWeight(min, neighbor);
 						// If this path is shorter, remember it
-						if (w < weight[neighbor.getId()]) {
-							predecessor[neighbor.getId()] = min.getId();
-							weight[neighbor.getId()] = w;						
+						int neighborId = neighbor.getId();
+						if (w < weight[neighborId]) {
+							predecessor[neighborId] = min.getId();
+							weight[neighborId] = w;						
 							// Update its distance to the start vertex
 							e.setDistance(w);
 							// Remove and add again to maintain queue order

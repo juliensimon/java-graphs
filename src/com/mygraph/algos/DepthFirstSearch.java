@@ -39,25 +39,27 @@ public class DepthFirstSearch<T extends Vertex> {
 	}
 
 	private void dfs_visit(T v) {
-		int id = v.getId();
-		color[v.getId()] = DepthFirstSearch.GRAY;
+		int vId = v.getId();
+		int id = vId;
+		color[vId] = DepthFirstSearch.GRAY;
 		counter++;
 		discovered[id] = counter;
 
 		for (T w : g.getNeighbors(v)) {
-			if (color[w.getId()] == DepthFirstSearch.WHITE) {
-				predecessor[w.getId()] = v.getId();
+			int wId = w.getId();
+			if (color[wId] == DepthFirstSearch.WHITE) {
+				predecessor[wId] = vId;
 				dfs_visit(w);
 			}
 		}
-		color[v.getId()] = DepthFirstSearch.BLACK;
+		color[vId] = DepthFirstSearch.BLACK;
 
 		counter++;
 		finished[id] = counter;
 	}
 
 	public void search(T start) {
-		for (int i = 1; i < (this.size + 1); i++) {
+		for (int i = 1; i <= this.size; i++) {
 			discovered[i] = finished[i] = predecessor[i] = -1;
 			color[i] = DepthFirstSearch.WHITE;
 		}

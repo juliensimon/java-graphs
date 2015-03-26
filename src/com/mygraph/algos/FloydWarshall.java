@@ -37,8 +37,10 @@ public class FloydWarshall<T extends Vertex> {
 
 		for (T v : g.getVertices()) {
 			for (T w : g.getNeighbors(v)) {
-				distance[v.getId()][w.getId()] = g.isWeight(v, w);
-				predecessor[v.getId()][w.getId()] = v.getId();
+				int vId = v.getId();
+				int wId = w.getId();
+				distance[vId][wId] = g.isWeight(v, w);
+				predecessor[vId][wId] = vId;
 			}
 		}
 	}
