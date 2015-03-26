@@ -1,7 +1,6 @@
 package com.mygraph.algos;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
@@ -9,55 +8,14 @@ import com.mygraph.core.Graph;
 import com.mygraph.core.Vertex;
 
 //As per "Algorithms in a Nutshell", O'Reilly, 2009
+ 
+//
+//Find the shortest path between a start vertex and any other
+//Best case o((v+e)*log(v)), median case o((v+e)*log(v)), worst case o((v+e)*log(v))
+//
 
-class QueueElement<T extends Vertex> {
-	private final T vertex;
-	private int distance;
-
-	QueueElement(T vertex, int distance) {
-		this.vertex = vertex;
-		this.distance = distance;
-	}
-
-	T getVertex() {
-		return vertex;
-	}
-
-	int getDistance() {
-		return distance;
-	}
-
-	void setDistance(int distance) {
-		this.distance = distance;
-	}
-
-	@Override
-	public String toString() {
-		return "(" + vertex.getId() + "," + distance + ")";
-	}
-
-}
-
-class QueueElementMinFirst<T extends Vertex> implements
-		Comparator<QueueElement<T>> {
-	@Override
-	public int compare(QueueElement<T> e1, QueueElement<T> e2) {
-		int i1 = e1.getDistance();
-		int i2 = e2.getDistance();
-		if (i1 == i2) {
-			return 0;
-		}
-		if (i1 > i2) {
-			return 1;
-		} else {
-			return -1;
-		}
-	}
-}
-
-// This is the well-known Dijsktra algorithm to find the shortest path from a
-// single origin
 // This implementation uses a PriorityQueue.
+
 public class DijkstraWithPQ<T extends Vertex> {
 
 	private final Graph<T> g;
@@ -93,7 +51,7 @@ public class DijkstraWithPQ<T extends Vertex> {
 
 			// Get and remove the vertex that is the closest to the start node
 			// (aka the min node)
-			// It's the first element of the list
+			// It's the first element of the queue
 			T min = pq.poll().getVertex();
 			assert(min!= null);
 
