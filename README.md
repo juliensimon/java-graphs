@@ -11,6 +11,7 @@
 - <code>DepthFirstSearch\<T extends Vertex></code>: walk a graph depth-first and find a path (not guaranteed to be shortest) between a start vertex and any other vertex.
 - <code>BreadthFirstSearch\<T extends Vertex></code>: walk a graph breadth-first and find a path (not guaranteed to be shortest) between a start vertex and any other vertex.
 - <code>DijkstraWithPQ\<T extends Vertex></code>: find the guaranteed shortest-path between a start vertex and any other vertex. This implementation uses a priority queue.
+- <code>DijkstraDenseGraphs\<T extends Vertex></code>: find the guaranteed shortest-path between a start vertex and any other vertex. This implementation is optimized for dense graphs.
 - <code>BellmanFord\<T extends Vertex></code>: find the guaranteed shortest-path between a start vertex and any other vertex.
 - <code>FloydWarshall\<T extends Vertex></code>: find the guaranteed shortest-path between any pair of vertices.
 - <code>TopologicalSortDFS\<T extends Vertex></code>: find a topological order in a DAG (algorithm based on DFS).
