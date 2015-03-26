@@ -14,6 +14,8 @@
 - <code>BellmanFord\<T extends Vertex></code>: find the guaranteed shortest-path between a start vertex and any other vertex.
 - <code>FloydWarshall\<T extends Vertex></code>: find the guaranteed shortest-path between any pair of vertices.
 - <code>TopologicalSortDFS\<T extends Vertex></code>: find a topological order in a DAG (algorithm based on DFS).
+- <code>Prim\<T extends Vertex></code>: find the minimum spanning tree (Prim's algorithm).
+
 
 - <code>TestXXX</code>: unit tests for class XXX.
 
