@@ -76,7 +76,7 @@ public class TestDijkstraWithPQ {
 	
 	@Test
 	public void testLargeSparseGraph() {
-		GraphGenerator gg = new GraphGenerator(1000, 10000, 1000, true);
+		GraphGenerator gg = new GraphGenerator(1000, 5000, 1000, true);
 		Graph<Vertex> g = gg.build();
 		Vertex src = gg.getRandomNode();
 		Vertex dst = gg.getRandomNode();
