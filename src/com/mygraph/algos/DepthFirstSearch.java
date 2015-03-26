@@ -7,6 +7,11 @@ import com.mygraph.core.Vertex;
 
 // As per "Algorithms in a Nutshell", O'Reilly, 2009
 
+//
+//Find a path between a start vertex and any other (not guaranteed to be the shortest one)
+//Best case o(v+e), median case o(v+e), worst case o(v+e)
+//
+
 public class DepthFirstSearch<T extends Vertex> {
 
 	private final Graph<T> g;

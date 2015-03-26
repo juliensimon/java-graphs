@@ -7,6 +7,11 @@ import com.mygraph.core.Vertex;
 
 //As per "Algorithms in a Nutshell", O'Reilly, 2009
 
+//
+//Find the shortest path between any two vertices
+//Best case o(v^3), median case o(v^3), worst case o(v^3)
+//
+
 public class FloydWarshall<T extends Vertex> {
 
 	private final Graph<T> g;

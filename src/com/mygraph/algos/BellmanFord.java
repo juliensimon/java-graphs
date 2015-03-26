@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import com.mygraph.core.Graph;
 import com.mygraph.core.Vertex;
 
+//
+// Find the shortest path between a start vertex and any other
+// Best case o(v*e), median case o(v*e), worst case o(v*e)
+//
+
 public class BellmanFord<T extends Vertex> {
 
 	private final Graph<T> g;

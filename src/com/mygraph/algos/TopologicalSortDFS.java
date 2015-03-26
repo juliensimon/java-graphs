@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import com.mygraph.core.Graph;
 import com.mygraph.core.Vertex;
 
+//
+//Find a topological order 
+//Best case o(v+e), median case o(v+e), worst case o(v+e)
+//
+
 public class TopologicalSortDFS<T extends Vertex> {
 
 	private final Graph<T> g;
