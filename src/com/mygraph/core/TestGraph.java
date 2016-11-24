@@ -282,24 +282,28 @@ public class TestGraph {
 		Assert.assertEquals(g.getNeighbors(null), null);
 
 		Set<Vertex> neighbors = g.getNeighbors(v1);
+		Assert.assertEquals(neighbors.size(), 2);
 		Assert.assertTrue(neighbors.contains(v2));
 		Assert.assertTrue(neighbors.contains(v3));
 		Assert.assertFalse(neighbors.contains(v4));
 		Assert.assertFalse(neighbors.contains(v5));
 
 		neighbors = g.getNeighbors(v2);
+		Assert.assertEquals(neighbors.size(), 2);
 		Assert.assertTrue(neighbors.contains(v1));
 		Assert.assertTrue(neighbors.contains(v4));
 		Assert.assertFalse(neighbors.contains(v3));
 		Assert.assertFalse(neighbors.contains(v5));
 
 		neighbors = g.getNeighbors(v3);
+		Assert.assertEquals(neighbors.size(), 2);
 		Assert.assertTrue(neighbors.contains(v1));
 		Assert.assertTrue(neighbors.contains(v4));
 		Assert.assertFalse(neighbors.contains(v2));
 		Assert.assertFalse(neighbors.contains(v5));
 
 		neighbors = g.getNeighbors(v4);
+		Assert.assertEquals(neighbors.size(), 2);
 		Assert.assertTrue(neighbors.contains(v2));
 		Assert.assertTrue(neighbors.contains(v3));
 		Assert.assertFalse(neighbors.contains(v1));
@@ -319,21 +323,25 @@ public class TestGraph {
 		g.addEdge(v4, v2);
 
 		Set<Vertex> neighbors = g.getNeighbors(v1);
+		Assert.assertEquals(neighbors.size(), 2);
 		Assert.assertTrue(neighbors.contains(v2));
 		Assert.assertTrue(neighbors.contains(v3));
 		Assert.assertFalse(neighbors.contains(v4));
 
 		neighbors = g.getNeighbors(v2);
+		Assert.assertEquals(neighbors.size(), 1);
 		Assert.assertFalse(neighbors.contains(v1));
 		Assert.assertFalse(neighbors.contains(v3));
 		Assert.assertTrue(neighbors.contains(v4));
 
 		neighbors = g.getNeighbors(v3);
+		Assert.assertEquals(neighbors.size(), 1);
 		Assert.assertTrue(neighbors.contains(v1));
 		Assert.assertFalse(neighbors.contains(v2));
 		Assert.assertFalse(neighbors.contains(v4));
 
 		neighbors = g.getNeighbors(v4);
+		Assert.assertEquals(neighbors.size(), 1);
 		Assert.assertFalse(neighbors.contains(v1));
 		Assert.assertTrue(neighbors.contains(v2));
 		Assert.assertFalse(neighbors.contains(v3));
