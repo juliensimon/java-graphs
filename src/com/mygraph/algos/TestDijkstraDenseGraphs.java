@@ -12,7 +12,6 @@ public class TestDijkstraDenseGraphs {
 
 	Vertex v1, v2, v3, v4, v5, v6, v7;
 	Graph<Vertex> g;
-	DijkstraDenseGraphs<Vertex> d;
 	ArrayList<Integer> path;
 
 	@Before

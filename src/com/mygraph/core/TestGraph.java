@@ -19,8 +19,6 @@ public class TestGraph {
 		v4 = new Vertex(4);
 	}
 
-	int i = 666;
-
 	@Test
 	public void testIsDirected() {
 		g = new Graph<Vertex>(false);
