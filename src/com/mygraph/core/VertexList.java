@@ -58,7 +58,7 @@ class VertexList<T extends Vertex> {
 		}
 	}
 
-	int isWeight(T destination) {
+	int getWeight(T destination) {
 		if (destination == null) {
 			return 0;
 		}

@@ -59,7 +59,7 @@ public class Prim<T extends Vertex> {
 				while (i.hasNext()) {
 					QueueElement<T> e = i.next();
 					if (e.getVertex().equals(neighbor)) {
-						int w = g.isWeight(min, neighbor);
+						int w = g.getWeight(min, neighbor);
 						// If this path is shorter, remember it
 						int neighborId = neighbor.getId();
 						if (w < weight[neighborId]) {

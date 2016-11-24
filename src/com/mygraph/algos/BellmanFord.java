@@ -45,7 +45,7 @@ public class BellmanFord<T extends Vertex> {
 				// and check if the distance to the start vertex is shorter
 				for (T w : g.getNeighbors(v)) {
 					
-					int newDist = distance[vId] + g.isWeight(v, w);
+					int newDist = distance[vId] + g.getWeight(v, w);
 					// If it is, record the new distance
 					int wId = w.getId();
 					if (newDist < distance[wId]) {
@@ -106,7 +106,7 @@ public class BellmanFord<T extends Vertex> {
 		// Walk through the predecessors and add the weight of each edge
 		int weight = 0;
 		while (currentId != -1) {
-			weight += g.isWeight(g.getVertex(predecessor[currentId]),
+			weight += g.getWeight(g.getVertex(predecessor[currentId]),
 					g.getVertex(currentId));
 			currentId = predecessor[currentId];
 		}

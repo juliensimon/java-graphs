@@ -103,14 +103,14 @@ public class TestVertexList {
 	@Test
 	public void testIsWeight() {
 		vlist = new VertexList<Vertex>(v1.getId());
-		Assert.assertEquals(vlist.isWeight(null), 0);
-		Assert.assertEquals(vlist.isWeight(v2), 0);
+		Assert.assertEquals(vlist.getWeight(null), 0);
+		Assert.assertEquals(vlist.getWeight(v2), 0);
 
 		vlist.addEdge(v2, 1);
 		vlist.addEdge(v3, 2);
-		Assert.assertEquals(vlist.isWeight(v2), 1);
-		Assert.assertEquals(vlist.isWeight(v3), 2);
-		Assert.assertEquals(vlist.isWeight(v4), 0);
+		Assert.assertEquals(vlist.getWeight(v2), 1);
+		Assert.assertEquals(vlist.getWeight(v3), 2);
+		Assert.assertEquals(vlist.getWeight(v4), 0);
 		vlist = null;
 	}
 

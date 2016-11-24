@@ -357,14 +357,14 @@ public class TestGraph {
 		g.addEdge(v1, v3, 2);
 		g.addEdge(v3, v1);
 
-		Assert.assertEquals(g.isWeight(v1, null), 0);
-		Assert.assertEquals(g.isWeight(null, v2), 0);
+		Assert.assertEquals(g.getWeight(v1, null), 0);
+		Assert.assertEquals(g.getWeight(null, v2), 0);
 
-		Assert.assertEquals(g.isWeight(v1, v2), 1);
-		Assert.assertEquals(g.isWeight(v2, v1), 0);
+		Assert.assertEquals(g.getWeight(v1, v2), 1);
+		Assert.assertEquals(g.getWeight(v2, v1), 0);
 
-		Assert.assertEquals(g.isWeight(v1, v3), 2);
-		Assert.assertEquals(g.isWeight(v1, v4), 0);
+		Assert.assertEquals(g.getWeight(v1, v3), 2);
+		Assert.assertEquals(g.getWeight(v1, v4), 0);
 	}
 
 	@Test

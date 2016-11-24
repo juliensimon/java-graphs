@@ -58,7 +58,7 @@ public class DijkstraWithPQ<T extends Vertex> {
 			// For each neighbor
 			for (T neighbor : g.getNeighbors(min)) {
 				// Get its distance to the min node
-				int weight = g.isWeight(min, neighbor);
+				int weight = g.getWeight(min, neighbor);
 				// Compute its distance from the start node
 				int newDistance = distance[min.getId()] + weight;
 
@@ -117,7 +117,7 @@ public class DijkstraWithPQ<T extends Vertex> {
 		// Walk through the predecessors and add the weight of each edge
 		int weight = 0;
 		while (currentId != -1) {
-			weight += g.isWeight(g.getVertex(predecessor[currentId]),
+			weight += g.getWeight(g.getVertex(predecessor[currentId]),
 					g.getVertex(currentId));
 			currentId = predecessor[currentId];
 		}

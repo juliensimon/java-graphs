@@ -113,11 +113,11 @@ public class Graph<T extends Vertex> {
 		return vertices.get(source).hasEdgeTo(destination);
 	}
 
-	public int isWeight(T source, T destination) {
+	public int getWeight(T source, T destination) {
 		if ((source == null) || (destination == null)) {
 			return 0;
 		}
-		return vertices.get(source).isWeight(destination);
+		return vertices.get(source).getWeight(destination);
 	}
 
 	public void display() {

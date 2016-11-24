@@ -55,7 +55,7 @@ public class DijkstraDenseGraphs<T extends Vertex> {
 			T minVertex = g.getVertex(minVertexId);
 			for (T v : g.getNeighbors(minVertex)) {
 				int vId = v.getId();
-				int weight = g.isWeight(minVertex, v);
+				int weight = g.getWeight(minVertex, v);
 				int newDistance = distance[minVertexId] + weight;
 				if (newDistance < distance[vId]) {
 					distance[vId] = newDistance;
@@ -97,7 +97,7 @@ public class DijkstraDenseGraphs<T extends Vertex> {
 		// Walk through the predecessors and add the weight of each edge
 		int weight = 0;
 		while (currentId != -1) {
-			weight += g.isWeight(g.getVertex(predecessor[currentId]),
+			weight += g.getWeight(g.getVertex(predecessor[currentId]),
 					g.getVertex(currentId));
 			currentId = predecessor[currentId];
 		}
