@@ -37,7 +37,7 @@ A comprehensive Java library implementing fundamental graph data structures and 
 ### Setup
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/java-graphs.git
+git clone https://github.com/juliensimon/java-graphs.git
 cd java-graphs
 ```
 

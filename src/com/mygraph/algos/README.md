@@ -2,7 +2,7 @@
 
 [![Java](https://img.shields.io/badge/Java-8+-orange.svg)](https://www.oracle.com/java/)
 [![JUnit](https://img.shields.io/badge/JUnit-4-green.svg)](https://junit.org/junit4/)
-[![Coverage](https://img.shields.io/badge/Coverage-90%25-brightgreen.svg)](https://github.com/yourusername/java-graphs)
+[![Status](https://img.shields.io/badge/Status-Archived-lightgrey.svg)](https://github.com/yourusername/java-graphs)
 
 This package contains implementations of classic graph algorithms built on top of the core graph data structures. Each algorithm is optimized for specific use cases and includes comprehensive test coverage.
 

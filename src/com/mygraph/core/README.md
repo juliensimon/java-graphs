@@ -2,7 +2,7 @@
 
 [![Java](https://img.shields.io/badge/Java-8+-orange.svg)](https://www.oracle.com/java/)
 [![JUnit](https://img.shields.io/badge/JUnit-4-green.svg)](https://junit.org/junit4/)
-[![Coverage](https://img.shields.io/badge/Coverage-95%25-brightgreen.svg)](https://github.com/yourusername/java-graphs)
+[![Status](https://img.shields.io/badge/Status-Archived-lightgrey.svg)](https://github.com/yourusername/java-graphs)
 
 This package contains the fundamental graph data structures that form the foundation of the Java Graph Algorithms Library. All algorithms in the `algos` package are built on top of these core components.
 
